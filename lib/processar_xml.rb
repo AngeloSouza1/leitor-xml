@@ -5,16 +5,20 @@ def processar_xml
   diretorio = '/home/angelosouza/Projetos /Leitor-Xml/xmls' # Diretório onde os arquivos XML estão localizados
 
   # Verifica se há arquivos XML no diretório
-  if Dir.glob("#{diretorio}/*.xml").empty?
-     return "Não há arquivos XML no diretório."
+  xml_files = Dir.glob("#{diretorio}/*.xml")
+  if xml_files.empty?
+    return "Não há arquivos XML no diretório."
   end
+
+  # Conta o número total de arquivos XML no diretório
+  xml_count = xml_files.size
 
   xmlns = {
     'nfe' => 'http://www.portalfiscal.inf.br/nfe'
   }
 
   # Se houver XMLs, continue o processamento
-  Dir.glob("#{diretorio}/*.xml").each do |xml_file_path|
+  xml_files.each do |xml_file_path|
     xml_file = File.open(xml_file_path)
     xml_doc = Nokogiri::XML(xml_file)
     xml_file.close
@@ -35,12 +39,8 @@ def processar_xml
       )
     end
   end
-  return "Dados dos XMLs processados e salvos no banco de dados."
+
+  return "Dados dos XMLs processados e salvos no banco de dados. Total de #{xml_count} XMLs encontrados."
 end
 
 puts processar_xml
-
-
-
-
-

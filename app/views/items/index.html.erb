@@ -1,17 +1,98 @@
 <!-- View items/index.html.erb -->
 
-<h1>Itens</h1>
+<style>
+    .custom-border {
+        border: 1px solid #d2cfcf; /* Definindo a largura da borda */
+        border-radius: 8px; /* Arredondando os cantos da borda */
+        padding: 20px; /* Adicionando espaço interno */
+        margin-bottom: 20px; /* Adicionando margem na parte inferior */
+        height: 460px; /* Definindo a altura da div */
+        overflow-y: auto; /* Adicionando scroll vertical caso o conteúdo ultrapasse a altura */
+    }
+    .custom-border-right {
+        border: 1px solid #d2cfcf; /* Definindo a largura da borda */
+        border-radius: 8px; /* Arredondando os cantos da borda */
+        padding: 20px; /* Adicionando espaço interno */
+        margin-bottom: 20px; /* Adicionando margem na parte inferior */
+        height: 460px; /* Definindo a altura da div */
+        overflow-y: auto; /* Adicionando scroll vertical caso o conteúdo ultrapasse a altura */
+        position: relative; /* Permite o posicionamento relativo */
+        left: 20px; /* Definindo o deslocamento para a esquerda */
+    }
+    .custom-button {
+        width: 100%; /* Definindo a largura do botão como 100% */
+    }
+    .custom-message {
+        background-color: #f0f0f0; /* Definindo a cor de fundo */
+        border: 1px solid #ccc; /* Adicionando borda */
+        padding: 10px; /* Adicionando espaço interno */
+        margin-top: 20px; /* Adicionando margem superior */
+        border-radius: 5px; /* Arredondando os cantos */
+    }
+</style>
 
-<!-- Botão para processar XMLs -->
-<form action="/items/processar" method="post">
-  <button type="submit">Processar XMLs</button>
-</form>
+<div class="container mt-5">
+  <h2 class="text-Left mb-3">Conversor de XMLS</h2>
 
-<!-- Mensagem de confirmação -->
-<% if flash[:notice] %>
-  <p><%= flash[:notice] %></p>
-<% end %>
+  <div class="row">
 
-<% if flash[:alert] %>
-  <p><%= flash[:alert] %></p>
-<% end %>
+
+    <!-- Div para o formulário e mensagens -->
+    <div class="col-md-6 custom-border">
+      <form action="/items/processar" method="post">
+        <button type="submit" class="btn btn-primary btn-block custom-button">Processar XMLs</button>
+      </form>
+      <% if @xml_count && @xml_count > 0 %>
+        <div class="alert alert-info mt-3" role="alert">
+          Existem <%= @xml_count %> XMLs disponíveis.
+        </div>
+      <% end %>
+
+
+
+      <% if flash[:notice] %>
+        <div class="alert alert-success mt-3" role="alert">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+      <% if flash[:alert] %>
+        <div class="alert alert-danger mt-3" role="alert">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+
+      <div class="custom-message mt-3"">
+      <p>O diretório padrão é: /home/angelosouza/Projetos /Leitor-Xml/xmls</p>
+    </div>
+
+
+  </div>
+
+
+
+
+
+  <!-- Div para exibir os dados atuais -->
+  <div class="col-md-6 custom-border-right">
+    <!-- Aqui você pode adicionar qualquer conteúdo para exibir os dados atuais -->
+
+    xxxxxxxxxxxxxxx
+
+
+
+
+
+  </div>
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+
