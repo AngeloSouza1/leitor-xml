@@ -8,12 +8,18 @@ class ItemsController < ApplicationController
     # Adiciona uma mensagem de log
     puts "Chamando a função processar"
 
-    # Chama o script Ruby que processa o XML e salva no banco de dados
-    `ruby lib/processar_xml.rb`
+    # Chama o script Ruby que processa o XML e retorna uma mensagem
+    result = `ruby lib/processar_xml.rb`
+    puts result
+    # Define a mensagem da flash com base na saída do script
+    if result.include?("Não há arquivos XML no diretório.")
+      flash[:alert] = result
+    else
+       flash[:notice] = result
+    end
 
-    # Redireciona para a página inicial após o processamento
-    redirect_to root_path, notice: "Dados do XML processados e salvos no banco de dados."
+    # Redireciona para a página inicial
+    redirect_to root_path
   end
-
-
 end
+

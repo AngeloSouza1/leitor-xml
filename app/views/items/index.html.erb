@@ -1,6 +1,17 @@
-<!-- app/views/items/index.html.erb -->
+<!-- View items/index.html.erb -->
 
 <h1>Itens</h1>
 
-<!-- Botão para processar o XML -->
-<%= button_to "Processar XML", items_processar_path, method: :post %>
+<!-- Botão para processar XMLs -->
+<form action="/items/processar" method="post">
+  <button type="submit">Processar XMLs</button>
+</form>
+
+<!-- Mensagem de confirmação -->
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<% if flash[:alert] %>
+  <p><%= flash[:alert] %></p>
+<% end %>
