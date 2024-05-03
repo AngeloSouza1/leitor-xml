@@ -1,7 +1,8 @@
 
 class ItemsController < ApplicationController
   def index
-
+    diretorio = '/home/angelosouza/Projetos /Leitor-Xml/xmls'
+    @xml_files = Dir.glob("#{diretorio}/*.xml").map { |file| File.basename(file) }
   end
 
   def processar
