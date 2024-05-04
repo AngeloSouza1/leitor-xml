@@ -5,6 +5,10 @@ class ItemsController < ApplicationController
     @xml_files = Dir.glob("#{diretorio}/*.xml").map { |file| File.basename(file) }
   end
 
+  def reiniciar
+
+    redirect_to root_path
+  end
   def processar
     # Adiciona uma mensagem de log
     puts "Chamando a função processar"

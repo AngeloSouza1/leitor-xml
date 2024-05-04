@@ -29,6 +29,10 @@
         margin-top: 20px; /* Adicionando margem superior */
         border-radius: 5px; /* Arredondando os cantos */
     }
+    .reiniciar-link {
+        margin-top: 20px;
+        display: none;
+    }
 </style>
 
 <div class="container mt-5">
@@ -36,19 +40,16 @@
 
   <div class="row">
 
-
     <!-- Div para o formulário e mensagens -->
     <div class="col-md-6 custom-border">
-      <form action="/items/processar" method="post">
-        <button type="submit" class="btn btn-primary btn-block custom-button">Processar XMLs</button>
+      <form id="processar-form" action="/items/processar" method="post">
+        <button id="processar-button" type="submit" class="btn btn-primary btn-block custom-button">Processar XMLs</button>
       </form>
       <% if @xml_count && @xml_count > 0 %>
         <div class="alert alert-info mt-3" role="alert">
           Existem <%= @xml_count %> XMLs disponíveis.
         </div>
       <% end %>
-
-
 
       <% if flash[:notice] %>
         <div class="alert alert-success mt-3" role="alert">
@@ -62,38 +63,32 @@
         </div>
       <% end %>
 
-      <div class="custom-message mt-3"">
-      <p>O diretório padrão é: /home/angelosouza/Projetos /Leitor-Xml/xmls</p>
+      <div class="custom-message mt-3">
+        <p>O diretório padrão é: /home/angelosouza/Projetos /Leitor-Xml/xmls</p>
+      </div>
+
+      <div>
+        <a href="<%= reiniciar_items_path %>" >Reiniciar</a>
+
+      </div>
+
+
+
+
     </div>
 
-
+    <!-- Div para exibir os dados atuais -->
+    <div class="col-md-6 custom-border-right">
+      <h4>Nomes dos Arquivos XML</h4>
+      <% if @xml_files.any? %>
+        <ul>
+          <% @xml_files.each do |xml_file| %>
+            <li><%= xml_file %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
   </div>
-
-
-
-
-
-  <!-- Div para exibir os dados atuais -->
-  <div class="col-md-6 custom-border-right">
-    <h4>Nomes dos Arquivos XML</h4>
-    <% if @xml_files.any? %>
-      <ul>
-        <% @xml_files.each do |xml_file| %>
-          <li><%= xml_file %></li>
-        <% end %>
-      </ul>
-     <% end %>
-
-  </div>
-
-
-
 </div>
-</div>
-
-
-
-
-
 
 
