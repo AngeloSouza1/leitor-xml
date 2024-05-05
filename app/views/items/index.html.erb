@@ -78,7 +78,7 @@
     <!-- Div para o formulário e mensagens -->
     <div class="col-md-6 custom-border">
       <form id="processar-form" action="/items/processar" method="post">
-        <button id="processar-button" type="submit" class="btn btn-primary btn-block custom-button" disabled>Processar XMLs</button>
+        <button id="processar-button" type="submit" class="btn btn-primary btn-block custom-button" disabled>Processar</button>
       </form>
       <% if @xml_count && @xml_count > 0 %>
         <div class="alert alert-info mt-3" role="alert">
@@ -109,17 +109,24 @@
 
     <!-- Div para exibir os dados atuais -->
     <div class="col-md-6 custom-border-right">
-<!--      <h4 class="fixed-title">Nomes dos Arquivos</h4> <!-- Título fixo -->
-      <h4 class="fixed-title custom-button">Nomes dos Arquivos</h4> <!-- Título com a mesma cor de fundo do botão -->
+      <h5 class="fixed-title custom-button">Nomes dos Arquivos</h5> <!-- Título com a mesma cor de fundo do botão -->
 
       <div class="file-list-container">
         <% if @xml_files.any? %>
           <ul class="xml-list"> <!-- Adicionando a classe "xml-list" à lista -->
             <% @xml_files.each_with_index do |xml_file, index| %>
               <% if index.even? %> <!-- Alternando cores de fundo -->
-                <li class="bg-light"><i class="fas fa-file-alt"></i> <%= xml_file %></li>
+                <li class="bg-light">
+                  <span>✅</span> <!-- Emoji de checklist -->
+                  <span>📄</span> <!-- Emoji representando a extensão XML -->
+                  <%= xml_file %>
+                </li>
               <% else %>
-                <li class="bg-white"><i class="fas fa-file-alt"></i> <%= xml_file %></li>
+                <li class="bg-info">
+                  <span>✅</span> <!-- Emoji de checklist -->
+                  <span>📄</span> <!-- Emoji representando a extensão XML -->
+                  <%= xml_file %>
+                </li>
               <% end %>
             <% end %>
           </ul>
@@ -128,6 +135,11 @@
         <% end %>
       </div>
     </div>
+
+
+
+
+
 
 
 
