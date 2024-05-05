@@ -43,7 +43,7 @@
     <!-- Div para o formulário e mensagens -->
     <div class="col-md-6 custom-border">
       <form id="processar-form" action="/items/processar" method="post">
-        <button id="processar-button" type="submit" class="btn btn-primary btn-block custom-button">Processar XMLs</button>
+        <button id="processar-button" type="submit" class="btn btn-primary btn-block custom-button" disabled>Processar XMLs</button>
       </form>
       <% if @xml_count && @xml_count > 0 %>
         <div class="alert alert-info mt-3" role="alert">
@@ -67,13 +67,8 @@
         <p>O diretório padrão é: /home/angelosouza/Projetos /Leitor-Xml/xmls</p>
       </div>
 
-      <div>
-        <a href="<%= reiniciar_items_path %>" >Reiniciar</a>
-
-      </div>
-
-
-
+      <!-- Botão para reiniciar a aplicação -->
+      <button onclick="reiniciarAplicacao()" class="btn btn-primary mt-3">Reiniciar</button>
 
     </div>
 
@@ -91,4 +86,13 @@
   </div>
 </div>
 
-
+<!-- Adicionando a funcionalidade JavaScript -->
+<script>
+    // Função para reiniciar a aplicação
+    function reiniciarAplicacao() {
+        // Habilita o botão "Processar XMLs"
+        document.getElementById("processar-button").disabled = false;
+        // Recarrega a página para reiniciar a aplicação
+        window.location.reload();
+    }
+</script>
