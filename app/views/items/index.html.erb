@@ -75,17 +75,17 @@
     <!-- Div para exibir os dados atuais -->
     <div class="col-md-6 custom-border-right">
       <h4>Nomes dos Arquivos XML</h4>
-      <div id="xml-files-list">
-        <% if @xml_files.any? %>
-          <ul>
-            <% @xml_files.each do |xml_file| %>
-              <li><%= xml_file %></li>
-            <% end %>
-          </ul>
-        <% else %>
-          <p>Nenhum arquivo XML disponível.</p>
-        <% end %>
-      </div>
+
+      <% if @xml_files.any? %>
+        <ul>
+          <% @xml_files.each do |xml_file| %>
+            <li><%= xml_file %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>Nenhum arquivo XML disponível.</p>
+      <% end %>
+
     </div>
 
 
