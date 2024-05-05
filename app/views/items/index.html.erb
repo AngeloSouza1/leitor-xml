@@ -109,8 +109,7 @@
 
     <!-- Div para exibir os dados atuais -->
     <div class="col-md-6 custom-border-right">
-      <h5 class="fixed-title custom-button">Nomes dos Arquivos</h5> <!-- Título com a mesma cor de fundo do botão -->
-
+      <h5 class="fixed-title custom-button">Nomes dos Arquivos  :    <span style="color: yellow;"><%= @xml_files.count %></h5>
       <div class="file-list-container">
         <% if @xml_files.any? %>
           <ul class="xml-list"> <!-- Adicionando a classe "xml-list" à lista -->
