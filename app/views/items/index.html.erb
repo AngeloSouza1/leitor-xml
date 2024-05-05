@@ -29,9 +29,9 @@
         margin-top: 20px; /* Adicionando margem superior */
         border-radius: 5px; /* Arredondando os cantos */
     }
-    .reiniciar-link {
-        margin-top: 20px;
-        display: none;
+    .reiniciar-button.disabled {
+        background-color: #cccccc; /* Cor de fundo cinza */
+        color: #666666; /* Cor do texto cinza mais escuro */
     }
 </style>
 
@@ -68,7 +68,7 @@
       </div>
 
       <!-- Botão para reiniciar a aplicação -->
-      <button onclick="reiniciarAplicacao()" class="btn btn-primary mt-3">Reiniciar</button>
+      <button onclick="reiniciarAplicacao()" id="reiniciar-button" class="btn btn-primary mt-3 reiniciar-button disabled">Reiniciar</button>
 
     </div>
 
@@ -88,6 +88,18 @@
 
 <!-- Adicionando a funcionalidade JavaScript -->
 <script>
+    // Função para desabilitar o botão "Reiniciar"
+    function disableReiniciarButton() {
+        document.getElementById("reiniciar-button").classList.add('disabled');
+        document.getElementById("reiniciar-button").disabled = true;
+    }
+
+    // Função para habilitar o botão "Reiniciar"
+    function habilitarReiniciarButton() {
+        document.getElementById("reiniciar-button").classList.remove('disabled');
+        document.getElementById("reiniciar-button").disabled = false;
+    }
+
     // Função para reiniciar a aplicação
     function reiniciarAplicacao() {
         // Habilita o botão "Processar XMLs"
@@ -95,4 +107,14 @@
         // Recarrega a página para reiniciar a aplicação
         window.location.reload();
     }
+
+    // Adiciona um evento de envio ao formulário para habilitar o botão "Reiniciar" após o envio
+    document.getElementById("processar-form").addEventListener("submit", function() {
+        habilitarReiniciarButton();
+    });
+
+    // Verifica se existem mensagens flash, se sim, habilita o botão "Reiniciar"
+    <% if flash[:notice] || flash[:alert] %>
+    habilitarReiniciarButton();
+    <% end %>
 </script>
