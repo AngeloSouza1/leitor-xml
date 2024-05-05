@@ -1,5 +1,3 @@
-<!-- View items/index.html.erb -->
-
 <style>
     .custom-border {
         border: 1px solid #d2cfcf; /* Definindo a largura da borda */
@@ -78,7 +76,7 @@
     <!-- Div para o formulário e mensagens -->
     <div class="col-md-6 custom-border">
       <form id="processar-form" action="/items/processar" method="post">
-        <button id="processar-button" type="submit" class="btn btn-primary btn-block custom-button" disabled>Processar</button>
+        <button id="processar-button" type="submit" class="btn btn-primary btn-block custom-button" disabled>Processar XMLs</button>
       </form>
       <% if @xml_count && @xml_count > 0 %>
         <div class="alert alert-info mt-3" role="alert">
@@ -134,12 +132,6 @@
         <% end %>
       </div>
     </div>
-
-
-
-
-
-
 
 
     <!-- Adicionando a funcionalidade JavaScript -->
