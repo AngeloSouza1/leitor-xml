@@ -101,7 +101,12 @@
       </div>
 
       <!-- Botão para reiniciar a aplicação -->
-      <button onclick="reiniciarAplicacao()" id="reiniciar-button" class="btn btn-primary mt-3 reiniciar-button disabled">Reiniciar</button>
+      <button onclick="reiniciarAplicacao()" id="reiniciar-button" onclick="gerarJSON()" class="btn btn-primary mt-3 reiniciar-button disabled">Reiniciar</button>
+
+      <!-- Botão para gerar JSON -->
+      <button id="gerar-json-button" onclick="gerarJSON()" class="btn btn-primary mt-3 custom-button" disabled>Gerar JSON</button>
+
+
 
     </div>
 
@@ -146,12 +151,15 @@
         function habilitarReiniciarButton() {
             document.getElementById("reiniciar-button").classList.remove('disabled');
             document.getElementById("reiniciar-button").disabled = false;
+            habilitarGerarJSONButton(); // Chama a função para habilitar o botão "Gerar JSON"
+
         }
 
         // Função para reiniciar a aplicação
         function reiniciarAplicacao() {
             // Habilita o botão "Processar XMLs"
             document.getElementById("processar-button").disabled = false;
+            habilitarGerarJSONButton(); // Habilita o botão "Gerar JSON" se houver arquivos na lista
             // Recarrega a página para reiniciar a aplicação
             window.location.reload();
         }
@@ -159,10 +167,32 @@
         // Adiciona um evento de envio ao formulário para habilitar o botão "Reiniciar" após o envio
         document.getElementById("processar-form").addEventListener("submit", function() {
             habilitarReiniciarButton();
+            habilitarGerarJSONButton(); // Habilita o botão "Gerar JSON" se houver arquivos na lista
+
         });
 
         // Verifica se existem mensagens flash, se sim, habilita o botão "Reiniciar"
         <% if flash[:notice] || flash[:alert] %>
         habilitarReiniciarButton();
         <% end %>
+
+
+
+        // Função para habilitar o botão "Gerar JSON" após o clique no botão "Processar"
+        function habilitarGerarJSONButton() {
+            document.getElementById("gerar-json-button").disabled = false;
+        }
+
+
+        // Função para lidar com o evento de clique do botão "Gerar JSON"
+        document.getElementById("gerar-json-button").addEventListener("click", function() {
+            // Aqui você pode adicionar o código para gerar o arquivo JSON com os dados do banco
+            // Por exemplo, você pode fazer uma requisição AJAX para o servidor para obter os dados e gerar o arquivo JSON
+            // Após gerar o arquivo, você pode notificar o usuário ou realizar outras ações necessárias
+            alert("Arquivo JSON gerado com sucesso!");
+        });
+
+
+
+
     </script>
