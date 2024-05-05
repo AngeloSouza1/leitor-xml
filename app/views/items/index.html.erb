@@ -33,6 +33,41 @@
         background-color: #cccccc; /* Cor de fundo cinza */
         color: #666666; /* Cor do texto cinza mais escuro */
     }
+    .fixed-title {
+        position: sticky; /* Define o título como fixo */
+        top: 0; /* Fixa o título no topo da div */
+        color: white; /* Define a cor do texto como branco para melhor legibilidade */
+        padding: 10px; /* Adiciona espaço interno ao título */
+        margin-bottom: 10px; /* Adiciona margem inferior para separar do restante dos itens */
+    }
+
+    .file-list-container {
+        max-height: 400px; /* Define a altura máxima da lista */
+        overflow-y: auto; /* Adiciona scroll vertical caso a lista seja maior que a altura máxima */
+    }
+
+    .xml-list {
+        list-style: none; /* Remove os estilos padrão da lista */
+        padding-left: 0; /* Remove o recuo padrão à esquerda da lista */
+    }
+
+    .xml-list li {
+        padding: 8px; /* Adiciona espaço interno aos itens da lista */
+        border-bottom: 1px solid #ccc; /* Adiciona uma linha divisória entre os itens */
+    }
+
+    .bg-light {
+        background-color: #f8f9fa; /* Define a cor de fundo para itens ímpares */
+    }
+    .custom-button {
+        background-color: rgba(10, 10, 248, 0.73); /* Cor de fundo azul */
+        color: white; /* Cor do texto branco */
+        border: none; /* Remove a borda */
+        border-radius: 5px; /* Arredonda os cantos */
+        padding: 10px 20px; /* Adiciona espaço interno */
+        cursor: pointer; /* Altera o cursor ao passar o mouse */
+        transition: background-color 0.3s ease; /* Transição suave da cor de fundo */
+    }
 </style>
 
 <div class="container mt-5">
@@ -74,50 +109,57 @@
 
     <!-- Div para exibir os dados atuais -->
     <div class="col-md-6 custom-border-right">
-      <h4>Nomes dos Arquivos XML</h4>
+<!--      <h4 class="fixed-title">Nomes dos Arquivos</h4> <!-- Título fixo -->
+      <h4 class="fixed-title custom-button">Nomes dos Arquivos</h4> <!-- Título com a mesma cor de fundo do botão -->
 
-      <% if @xml_files.any? %>
-        <ul>
-          <% @xml_files.each do |xml_file| %>
-            <li><%= xml_file %></li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p>Nenhum arquivo XML disponível.</p>
-      <% end %>
-
+      <div class="file-list-container">
+        <% if @xml_files.any? %>
+          <ul class="xml-list"> <!-- Adicionando a classe "xml-list" à lista -->
+            <% @xml_files.each_with_index do |xml_file, index| %>
+              <% if index.even? %> <!-- Alternando cores de fundo -->
+                <li class="bg-light"><i class="fas fa-file-alt"></i> <%= xml_file %></li>
+              <% else %>
+                <li class="bg-white"><i class="fas fa-file-alt"></i> <%= xml_file %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>Nenhum arquivo XML disponível.</p>
+        <% end %>
+      </div>
     </div>
 
 
-<!-- Adicionando a funcionalidade JavaScript -->
-<script>
-    // Função para desabilitar o botão "Reiniciar"
-    function disableReiniciarButton() {
-        document.getElementById("reiniciar-button").classList.add('disabled');
-        document.getElementById("reiniciar-button").disabled = true;
-    }
 
-    // Função para habilitar o botão "Reiniciar"
-    function habilitarReiniciarButton() {
-        document.getElementById("reiniciar-button").classList.remove('disabled');
-        document.getElementById("reiniciar-button").disabled = false;
-    }
+    <!-- Adicionando a funcionalidade JavaScript -->
+    <script>
+        // Função para desabilitar o botão "Reiniciar"
+        function disableReiniciarButton() {
+            document.getElementById("reiniciar-button").classList.add('disabled');
+            document.getElementById("reiniciar-button").disabled = true;
+        }
 
-    // Função para reiniciar a aplicação
-    function reiniciarAplicacao() {
-        // Habilita o botão "Processar XMLs"
-        document.getElementById("processar-button").disabled = false;
-        // Recarrega a página para reiniciar a aplicação
-        window.location.reload();
-    }
+        // Função para habilitar o botão "Reiniciar"
+        function habilitarReiniciarButton() {
+            document.getElementById("reiniciar-button").classList.remove('disabled');
+            document.getElementById("reiniciar-button").disabled = false;
+        }
 
-    // Adiciona um evento de envio ao formulário para habilitar o botão "Reiniciar" após o envio
-    document.getElementById("processar-form").addEventListener("submit", function() {
+        // Função para reiniciar a aplicação
+        function reiniciarAplicacao() {
+            // Habilita o botão "Processar XMLs"
+            document.getElementById("processar-button").disabled = false;
+            // Recarrega a página para reiniciar a aplicação
+            window.location.reload();
+        }
+
+        // Adiciona um evento de envio ao formulário para habilitar o botão "Reiniciar" após o envio
+        document.getElementById("processar-form").addEventListener("submit", function() {
+            habilitarReiniciarButton();
+        });
+
+        // Verifica se existem mensagens flash, se sim, habilita o botão "Reiniciar"
+        <% if flash[:notice] || flash[:alert] %>
         habilitarReiniciarButton();
-    });
-
-    // Verifica se existem mensagens flash, se sim, habilita o botão "Reiniciar"
-    <% if flash[:notice] || flash[:alert] %>
-    habilitarReiniciarButton();
-    <% end %>
-</script>
+        <% end %>
+    </script>
