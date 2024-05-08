@@ -1,75 +1,66 @@
 <style>
-    .custom-border {
-        border: 1px solid #d2cfcf; /* Definindo a largura da borda */
-        border-radius: 8px; /* Arredondando os cantos da borda */
-        padding: 20px; /* Adicionando espaço interno */
-        margin-bottom: 20px; /* Adicionando margem na parte inferior */
-        height: 460px; /* Definindo a altura da div */
-        overflow-y: auto; /* Adicionando scroll vertical caso o conteúdo ultrapasse a altura */
+    .custom-border-right{
+        border: 1px solid #d2cfcf;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        height: auto;
+        overflow-y: auto;
     }
-    .custom-border-right {
-        border: 1px solid #d2cfcf; /* Definindo a largura da borda */
-        border-radius: 8px; /* Arredondando os cantos da borda */
-        padding: 20px; /* Adicionando espaço interno */
-        margin-bottom: 20px; /* Adicionando margem na parte inferior */
-        height: 460px; /* Definindo a altura da div */
-        overflow-y: auto; /* Adicionando scroll vertical caso o conteúdo ultrapasse a altura */
-        position: relative; /* Permite o posicionamento relativo */
-        left: 20px; /* Definindo o deslocamento para a esquerda */
+    .custom-border {
+        border: 1px solid #d2cfcf;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        height: auto;
+        overflow-y: auto;
     }
     .custom-button {
-        width: 100%; /* Definindo a largura do botão como 100% */
+        width: 100%;
     }
     .custom-message {
-        background-color: #f0f0f0; /* Definindo a cor de fundo */
-        border: 1px solid #ccc; /* Adicionando borda */
-        padding: 10px; /* Adicionando espaço interno */
-        margin-top: 20px; /* Adicionando margem superior */
-        border-radius: 5px; /* Arredondando os cantos */
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-top: 20px;
+        border-radius: 5px;
     }
     .reiniciar-button.disabled {
-        background-color: #cccccc; /* Cor de fundo cinza */
-        color: #666666; /* Cor do texto cinza mais escuro */
+        background-color: #cccccc;
+        color: #666666;
     }
     .fixed-title {
-        position: sticky; /* Define o título como fixo */
-        top: 0; /* Fixa o título no topo da div */
-        color: white; /* Define a cor do texto como branco para melhor legibilidade */
-        padding: 10px; /* Adiciona espaço interno ao título */
-        margin-bottom: 10px; /* Adiciona margem inferior para separar do restante dos itens */
+        position: sticky;
+        top: 0;
+        color: white;
+        padding: 10px;
+        margin-bottom: 10px;
     }
-
     .file-list-container {
-        max-height: 400px; /* Define a altura máxima da lista */
-        overflow-y: auto; /* Adiciona scroll vertical caso a lista seja maior que a altura máxima */
+        max-height: 400px;
+        overflow-y: auto;
     }
-
     .xml-list {
-        list-style: none; /* Remove os estilos padrão da lista */
-        padding-left: 0; /* Remove o recuo padrão à esquerda da lista */
+        list-style: none;
+        padding-left: 0;
     }
-
     .xml-list li {
-        padding: 8px; /* Adiciona espaço interno aos itens da lista */
-        border-bottom: 1px solid #ccc; /* Adiciona uma linha divisória entre os itens */
+        padding: 8px;
+        border-bottom: 1px solid #ccc;
     }
-
     .bg-light {
-        background-color: #f8f9fa; /* Define a cor de fundo para itens ímpares */
+        background-color: #f8f9fa;
     }
     .custom-button {
-        background-color: rgba(10, 10, 248, 0.73); /* Cor de fundo azul */
-        color: white; /* Cor do texto branco */
-        border: none; /* Remove a borda */
-        border-radius: 5px; /* Arredonda os cantos */
-        padding: 10px 20px; /* Adiciona espaço interno */
-        cursor: pointer; /* Altera o cursor ao passar o mouse */
-        transition: background-color 0.3s ease; /* Transição suave da cor de fundo */
+        background-color: rgba(10, 10, 248, 0.73);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
     }
-    .download-link {
-        display: block; /* Faz o link ocupar toda a largura do seu contêiner */
-        margin-top: 10px; /* Adiciona espaço superior para separação */
-    }
+
 </style>
 
 <div class="container mt-5">
@@ -78,7 +69,7 @@
   <div class="row">
 
     <!-- Div para o formulário e mensagens -->
-    <div class="col-md-6 custom-border">
+    <div class="col-md-6 custom-border"> <!-- Ajustado para ocupar 6 colunas -->
       <form id="processar-form" action="/items/processar" method="post">
         <button id="processar-button" type="submit" class="btn btn-primary btn-block custom-button" disabled>Processar</button>
       </form>
@@ -101,37 +92,31 @@
       <% end %>
 
       <div class="custom-message mt-3">
-        O diretório padrão é: /home/angelosouza/Projetos /Leitor-Xml/xmls
+        O diretório padrão é: /home/angelosouza/Projetos /Leitor-Xml/xmls <br>
         O diretório json é: /home/angelosouza/Projetos /Leitor-Xml/json
       </div>
 
-
-
       <!-- Botão para reiniciar a aplicação -->
       <button onclick="reiniciarAplicacao()" id="reiniciar-button"  class="btn btn-primary mt-3 reiniciar-button disabled">Reiniciar</button>
-
-
-
-
     </div>
 
     <!-- Div para exibir os dados atuais -->
-    <div class="col-md-6 custom-border-right">
-      <h5 class="fixed-title custom-button">Nomes dos Arquivos  :    <span style="color: yellow;"><%= @xml_files.count %></h5>
+    <div class="col-md-6 custom-border-right"> <!-- Ajustado para ocupar 6 colunas -->
+      <h5 class="fixed-title custom-button">Nomes dos Arquivos  :    <span style="color: yellow;"><%= @xml_files.count %></span></h5>
       <div class="file-list-container">
         <% if @xml_files.any? %>
-          <ul class="xml-list"> <!-- Adicionando a classe "xml-list" à lista -->
+          <ul class="xml-list">
             <% @xml_files.each_with_index do |xml_file, index| %>
-              <% if index.even? %> <!-- Alternando cores de fundo -->
+              <% if index.even? %>
                 <li class="bg-light">
-                  <span>✅</span> <!-- Emoji de checklist -->
-                  <span>📄</span> <!-- Emoji representando a extensão XML -->
+                  <span>✅</span>
+                  <span>📄</span>
                   <%= xml_file %>
                 </li>
               <% else %>
                 <li class="bg-info">
-                  <span>✅</span> <!-- Emoji de checklist -->
-                  <span>📄</span> <!-- Emoji representando a extensão XML -->
+                  <span>✅</span>
+                  <span>📄</span>
                   <%= xml_file %>
                 </li>
               <% end %>
@@ -143,6 +128,11 @@
       </div>
     </div>
 
+    <!-- Div para a nova seção -->
+    <div class="col-md-6 custom-border"> <!-- Ajustado para ocupar 6 colunas -->
+      <h3>Nova Seção</h3>
+      <p>Aqui você pode adicionar qualquer conteúdo para a nova seção.</p>
+    </div>
 
     <!-- Adicionando a funcionalidade JavaScript -->
     <script>
@@ -193,8 +183,7 @@
         habilitarReiniciarButton();
         <% end %>
 
-
-
         // Chama a função para habilitar o botão "Processar XMLs" ao iniciar a página
         habilitarProcessarButton();
     </script>
+  </div>
