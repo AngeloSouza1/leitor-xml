@@ -66,6 +66,10 @@
         cursor: pointer; /* Altera o cursor ao passar o mouse */
         transition: background-color 0.3s ease; /* Transição suave da cor de fundo */
     }
+    .download-link {
+        display: block; /* Faz o link ocupar toda a largura do seu contêiner */
+        margin-top: 10px; /* Adiciona espaço superior para separação */
+    }
 </style>
 
 <div class="container mt-5">
@@ -76,7 +80,7 @@
     <!-- Div para o formulário e mensagens -->
     <div class="col-md-6 custom-border">
       <form id="processar-form" action="/items/processar" method="post">
-        <button id="processar-button" type="submit" class="btn btn-primary btn-block custom-button" disabled>Processar XMLs</button>
+        <button id="processar-button" type="submit" class="btn btn-primary btn-block custom-button" disabled>Processar MLs</button>
       </form>
       <% if @xml_count && @xml_count > 0 %>
         <div class="alert alert-info mt-3" role="alert">
@@ -100,11 +104,11 @@
         <p>O diretório padrão é: /home/angelosouza/Projetos /Leitor-Xml/xmls</p>
       </div>
 
-      <!-- Botão para reiniciar a aplicação -->
-      <button onclick="reiniciarAplicacao()" id="reiniciar-button" onclick="gerarJSON()" class="btn btn-primary mt-3 reiniciar-button disabled">Reiniciar</button>
 
-      <!-- Botão para gerar JSON -->
-      <button id="gerar-json-button" onclick="gerarJSON()" class="btn btn-primary mt-3 custom-button" disabled>Gerar JSON</button>
+
+      <!-- Botão para reiniciar a aplicação -->
+      <button onclick="reiniciarAplicacao()" id="reiniciar-button"  class="btn btn-primary mt-3 reiniciar-button disabled">Reiniciar</button>
+
 
 
 
@@ -152,13 +156,17 @@
             document.getElementById("reiniciar-button").classList.remove('disabled');
             document.getElementById("reiniciar-button").disabled = false;
             habilitarGerarJSONButton(); // Chama a função para habilitar o botão "Gerar JSON"
+        }
 
+        // Função para habilitar o botão "Processar XMLs" ao iniciar
+        function habilitarProcessarButton() {
+            document.getElementById("processar-button").disabled = false;
         }
 
         // Função para reiniciar a aplicação
         function reiniciarAplicacao() {
             // Habilita o botão "Processar XMLs"
-            document.getElementById("processar-button").disabled = false;
+            habilitarProcessarButton();
             habilitarGerarJSONButton(); // Habilita o botão "Gerar JSON" se houver arquivos na lista
             // Recarrega a página para reiniciar a aplicação
             window.location.reload();
@@ -168,7 +176,6 @@
         document.getElementById("processar-form").addEventListener("submit", function() {
             habilitarReiniciarButton();
             habilitarGerarJSONButton(); // Habilita o botão "Gerar JSON" se houver arquivos na lista
-
         });
 
         // Verifica se existem mensagens flash, se sim, habilita o botão "Reiniciar"
@@ -178,21 +185,6 @@
 
 
 
-        // Função para habilitar o botão "Gerar JSON" após o clique no botão "Processar"
-        function habilitarGerarJSONButton() {
-            document.getElementById("gerar-json-button").disabled = false;
-        }
-
-
-        // Função para lidar com o evento de clique do botão "Gerar JSON"
-        document.getElementById("gerar-json-button").addEventListener("click", function() {
-            // Aqui você pode adicionar o código para gerar o arquivo JSON com os dados do banco
-            // Por exemplo, você pode fazer uma requisição AJAX para o servidor para obter os dados e gerar o arquivo JSON
-            // Após gerar o arquivo, você pode notificar o usuário ou realizar outras ações necessárias
-            alert("Arquivo JSON gerado com sucesso!");
-        });
-
-
-
-
+        // Chama a função para habilitar o botão "Processar XMLs" ao iniciar a página
+        habilitarProcessarButton();
     </script>

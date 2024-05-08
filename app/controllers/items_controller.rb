@@ -21,11 +21,12 @@ class ItemsController < ApplicationController
     if result.include?("Não há arquivos XML no diretório.")
       flash[:alert] = result
     else
-       flash[:notice] = result
+      flash[:notice] = result
     end
 
     # Redireciona para a página inicial
     redirect_to root_path
+
   end
 end
 
