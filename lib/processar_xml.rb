@@ -53,7 +53,8 @@ def processar_xml
 
 
 
-  return "Total de #{xml_count} XMLs encontrados. Dados dos XMLs processados e salvos no banco de dados e salvos no arquivo JSON: #{json_file_name}"
+  return "Foram encontrados um total de #{xml_count} XMLs.\nOs dados foram processados e salvos no banco de dados.\nAlém disso, foram exportados para um arquivo JSON com o nome '#{File.basename(json_file_name)}'."
+
 end
 
 puts processar_xml
