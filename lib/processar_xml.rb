@@ -40,17 +40,19 @@ def processar_xml
         quantidade: quantidade
       }
     end
+    end
+
+            # Gera o nome do arquivo JSON com base na data atual e na quantidade de XMLs processados
+            json_file_name = "/home/angelosouza/Projetos /Leitor-Xml/jsons/#{Time.now.strftime("%Y-%m-%d")}_#{xml_count}_xmls.json"
 
 
-            # # Gera o nome do arquivo JSON com base na data atual e na quantidade de XMLs processados
-            # json_file_name = "/home/angelosouza/Projetos /Leitor-Xml/jsons/#{Time.now.strftime("%Y-%m-%d")}_#{xml_count}_xmls.json"
-            #
-            #
-            # # Gera o arquivo JSON com os últimos dados XML convertidos
-            # File.open(json_file_name, 'w') do |file|
-            #   file.write(JSON.pretty_generate(items))
-            # end
-  end
+            # Gera o arquivo JSON com os últimos dados XML convertidos
+            File.open(json_file_name, 'w') do |file|
+              file.write(JSON.pretty_generate(items))
+            end
+
+
+
   return "Total de #{xml_count} XMLs encontrados. Dados dos XMLs processados e salvos no banco de dados e salvos no arquivo JSON: #{json_file_name}"
 end
 

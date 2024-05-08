@@ -145,6 +145,14 @@
 
     <!-- Adicionando a funcionalidade JavaScript -->
     <script>
+        // Função para ocultar as mensagens
+        function ocultarMensagens() {
+            document.querySelectorAll('.alert').forEach(function(alert) {
+                alert.style.display = 'none';
+            });
+        }
+
+
         // Função para desabilitar o botão "Reiniciar"
         function disableReiniciarButton() {
             document.getElementById("reiniciar-button").classList.add('disabled');
@@ -163,8 +171,9 @@
             document.getElementById("processar-button").disabled = false;
         }
 
-        // Função para reiniciar a aplicação
         function reiniciarAplicacao() {
+            disableReiniciarButton()
+            ocultarMensagens()
             // Habilita o botão "Processar XMLs"
             habilitarProcessarButton();
             habilitarGerarJSONButton(); // Habilita o botão "Gerar JSON" se houver arquivos na lista
